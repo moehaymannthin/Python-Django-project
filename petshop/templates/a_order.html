@@ -1,0 +1,47 @@
+{% extends 'a_base.html' %}
+
+{% block title %}
+    product list
+{% endblock %}
+
+{% block body %}
+<div class="d-flex flex-column min-100 justify-content-center"><br>
+    <h2 align="center" >Order</h2><br>
+        <div class="container" style="max-width: 1500px;">
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td scope="col"> Id </td>
+                        <td scope="col"> User </td>
+                        <td scope="col"> Product </td>
+                        <td scope="col"> Qty </td>
+                        <td scope="col"> Price </td>
+                        <td scope="col"> Name </td>
+                        <td scope="col"> Phone </td>
+                        <td scope="col"> Address </td>
+                        <td scope="col"> Date </td>
+                    </tr>
+                </thead>
+
+                {% for o in orders%}
+                <tbody>
+                    <tr>
+                        <td scope="row">{{o.id}}</td>
+                        <td scope="row">{{o.user}}</td>
+                        <td scope="row">{{o.product}}</td>
+                        <td scope="row">{{o.total_qty}}</td>
+                        <td scope="row">{{o.total_price}}</td>
+                        <td scope="row">{{o.name}}</td>
+                        <td scope="row">{{o.phone}}</td>
+                        <td scope="row">{{o.address}}</td>
+                        <td scope="row">{{o.created_at}}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+
+            </table>
+
+        </div>
+</div>
+{% endblock %}

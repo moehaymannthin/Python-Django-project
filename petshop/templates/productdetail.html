@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    product detail
+{% endblock %}
+
+{% block body %}
+    <div class="container px-auto">
+        <div class="card text-center shadow p-3">
+            {% if product.image %}
+                <div margin-top="5px">
+                    <img src="{{product.image.url}}" class="card-img-top" style="width: 30rem;">
+                </div>
+            {% endif %}
+
+            <div class="card-body">
+                <h6 class="card-title">{{product.name}}</h6>
+                <h6 class="card-title">{{product.price}} MMK</h6>
+
+                    {% csrf_token %}
+                    <div class="flex items-center justify-between">
+                        <form method="GET" action="{% url 'cartcreate' pdt_id=product.id %}">
+                            <a href="/product/buynow/{{product.id}}" class="btn btn-primary">Buy Now</a>
+                            {% csrf_token %}
+                            <input type="number" name="qty" value="1" min="1">  <!-- Add input field for quantity -->
+                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </form>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

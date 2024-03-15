@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+     order list
+{% endblock %}
+
+
+{% block body %}
+<div class="d-flex flex-column min-vh-100 justify-content-center"><br>
+    <h2 align="center" >MyOrder</h2><br>
+        <div class="container" style="max-width: 900px;">
+
+            {% for order in orders%}
+            <div >
+                <div>
+                    <h5> Order Id   : <span>{{order.id}}</span> </h5>
+                    <h5> Name       : <span>{{order.user}}</span> </h5>
+                    <h5> Phone      : <span>{{order.phone}}</span> </h5>
+                    <h5> Address    : <span>{{order.address}}</span> </h5>
+                    <h5> Date       : <span>{{order.created_at}}</span> </h5>
+                    <br/>
+                    <h5> Status    : <span>{{order.status}}</span> </h5>
+                    </br/>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td scope="col"> Image </td>
+                                <td scope="col"> Name </td>
+                                <td scope="col"> Price </td>
+                                <td scope="col"> Qty </td>
+                                <td scope="col"> Total </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><img src="{{order.product.image.url}}" style="width: 15rem;"></td>
+                                <td scope="row"> {{order.name}} </td>
+                                <td scope="row"> {{order.product.price}} </td>
+                                <td scope="row"> {{order.total_qty}} </td>
+                                <td scope="row"> {{order.total_price}} </td>
+                            </tr>
+                        </tbody>
+                    </table><br>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

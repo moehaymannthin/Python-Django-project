@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    cart list
+{% endblock %}
+
+
+{% block body %}
+<div class="d-flex flex-column min-vh-100 justify-content-center"><br>
+    <h2 align="center" >Cart</h2><br>
+        <div class="container" style="max-width: 900px;">     
+
+            {% if cart %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td scope="col"> Image </td>
+                        <td scope="col"> Name </td>
+                        <td scope="col"> Price </td>
+                        <td scope="col"> Qty </td>
+                        <td scope="col"> Total </td>
+                    </tr>
+                </thead>
+                
+                {% for c in cart %}
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="{{c.product.image.url}}" style="width: 15rem;">
+                        </td>
+                        <td scope="row">{{c.product.name}}</td>
+                        <td scope="row">{{c.product.price}}</td>
+                        <td scope="row">{{c.qty}}</td>
+                        <td scope="row">{{ c.total }}</td>
+                        <td><a href="/product/cartdelete/{{c.id}}" class="btn btn-danger">Remove</a></td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+
+            </table>
+            {% endif %}
+
+        </div>
+
+        <div>
+            {% if cart %}
+                <form method="POST" action="/product/cartordercreate/" class="container mx-auto my-10 p-8 bg-white shadow-md">
+                    {% csrf_token %}
+                    <div class="container" style="max-width: 900px;">
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input name="name" type="text" class="form-control" required >
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone</label>
+                            <input name="phone" type="number" class="form-control" required >
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <input name="address" type="text" class="form-control" required >
+                        </div>
+                        <button type="submit" class="btn btn-info">Order</button>
+                    </div>
+                </form><br><br><hr><br><br>
+            {% endif %}
+        </div>
+</div>
+
+
+
+{% endblock body %}

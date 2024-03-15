@@ -1,0 +1,25 @@
+{% extends 'a_base.html' %}
+
+{% block title %}
+    detail
+{% endblock %}
+
+{% block body %}
+    <div class="container px-auto">
+        <div class="card text-center shadow p-3">
+            {% if product.image %}
+                <div margin-top="5px">
+                    <img src="{{product.image.url}}" class="card-img-top" style="width: 30rem;">
+                </div>
+            {% endif %}
+
+            <div class="card-body">
+                <h6 class="card-title">{{product.name}}</h6>
+                <h6 class="card-title">{{product.price}} MMK</h6>
+
+                <a href="/product/update/{{product.id}}/" class="btn btn-info">Update</a>
+                <a href="/product/delete/{{product.id}}/" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
